@@ -16,6 +16,19 @@ def hello_world():
     return 'Hello World!'
 
 
+@app.route('/problems')
+def show_problem_list():
+    problem_list = []
+    for key, value in slug_dict.items():
+        problem_list.append({
+            'id': value['id'],
+            'url': '/problems/' + key,
+            'name': str(value['id']).zfill(3) + '. ' + value['title']
+        })
+    problem_list.sort(key=lambda x: x['id'])
+    return render_template('problem_list.html', problem_list=problem_list)
+
+
 @app.route('/problems/<slug>')
 def show_problem(slug):
     info = slug_dict[slug]
