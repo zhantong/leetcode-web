@@ -1,9 +1,13 @@
 <!doctype html>
 <html>
+<link rel="stylesheet" href="{{ url_for('static',filename='default.css') }}">
 <head>
     <title>Hello from Flask</title>
 </head>
 <body>
 {{ description|safe }}
+{% for code in codes %}
+    {{ code|safe }}
+{% endfor %}
 </body>
 </html>
