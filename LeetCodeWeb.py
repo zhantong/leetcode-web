@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 import json
 import os.path
 from pygments import highlight
@@ -30,6 +31,8 @@ def show_problem(slug):
         description = f.read()
     codes = get_codes(('python', 'java', 'c++'), info)
     title = str(info['id']) + '. ' + info['title']
+    if 'X-PJAX' in request.headers:
+        return render_template('problem_description.html', description=description, codes=codes, title=title)
     return render_template('problem.html', description=description, codes=codes,
                            problem_list=get_problem_list(slug_dict), title=title)
 

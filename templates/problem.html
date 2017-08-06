@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='default.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='pure-min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='side-menu.css') }}">
-<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello from Flask</title>
@@ -19,27 +19,23 @@
             <a class="pure-menu-heading" href="/">Pure</a>
             <ul class="pure-menu-list">
                 {% for problem in problem_list %}
-                    <li class="pure-menu-item"><a class="pure-menu-link" href="{{ problem.url }}">{{ problem.name }}</a>
+                    <li class="pure-menu-item"><a data-pjax class="pure-menu-link"
+                                                  href="{{ problem.url }}">{{ problem.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
     <div id="main">
-        <div class="header">
-            <h1>{{ title }}</h1>
-        </div>
-        <div class="content">
-            <h2>题目描述</h2>
-            {{ description|safe }}
-            {% for code_type, code in codes %}
-                <h2>题解（{{ code_type }}）</h2>
-                {{ code|safe }}
-            {% endfor %}
+        <div id="pjax-container">
+            {% include 'problem_description.html' %}
         </div>
     </div>
 </div>
+<script src="{{ url_for('static',filename='jquery-3.2.1.min.js') }}"></script>
 <script src="{{ url_for('static',filename='ui.js') }}"></script>
-<script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='jquery.pjax.js') }}"></script>
+<script src="{{ url_for('static',filename='custom.js') }}"></script>
 </body>
 </html>
