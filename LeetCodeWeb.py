@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect
 import json
 import os.path
 from pygments import highlight
@@ -14,13 +15,13 @@ slug_dict = {}
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return redirect('/problems')
 
 
 @app.route('/problems')
 def show_problem_list():
     problem_list = get_problem_list(slug_dict)
-    return render_template('problem_list.html', problem_list=problem_list)
+    return render_template('problems_summary.html', problem_list=problem_list)
 
 
 @app.route('/problems/<slug>')
