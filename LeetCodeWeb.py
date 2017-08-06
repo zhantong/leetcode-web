@@ -18,14 +18,7 @@ def hello_world():
 
 @app.route('/problems')
 def show_problem_list():
-    problem_list = []
-    for key, value in slug_dict.items():
-        problem_list.append({
-            'id': value['id'],
-            'url': '/problems/' + key,
-            'name': str(value['id']).zfill(3) + '. ' + value['title']
-        })
-    problem_list.sort(key=lambda x: x['id'])
+    problem_list = get_problem_list(slug_dict)
     return render_template('problem_list.html', problem_list=problem_list)
 
 
@@ -36,7 +29,9 @@ def show_problem(slug):
     with open(os.path.join(ROOT, 'descriptions', description_file_name), 'r', encoding='utf-8') as f:
         description = f.read()
     codes = get_codes(('python', 'java', 'c++'), info)
-    return render_template('problem.html', description=description, codes=codes)
+    title = str(info['id']) + '. ' + info['title']
+    return render_template('problem.html', description=description, codes=codes,
+                           problem_list=get_problem_list(slug_dict), title=title)
 
 
 def init():
@@ -60,9 +55,21 @@ def get_codes(code_types, info):
         code_info = code_infos[code_type]
         with open(os.path.join(ROOT, 'leetcode', str(info['id']).zfill(3) + '. ' + info['title'], code_info[0],
                                info['title'] + '.' + code_info[1]), 'r', encoding='utf-8') as f:
-            python_code = highlight(f.read(), PythonLexer(), HtmlFormatter())
-            codes.append(python_code)
+            code = highlight(f.read(), PythonLexer(), HtmlFormatter())
+            codes.append((code_info[0], code))
     return codes
+
+
+def get_problem_list(slug_dict):
+    problem_list = []
+    for key, value in slug_dict.items():
+        problem_list.append({
+            'id': value['id'],
+            'url': '/problems/' + key,
+            'name': str(value['id']).zfill(3) + '. ' + value['title']
+        })
+    problem_list.sort(key=lambda x: x['id'])
+    return problem_list
 
 
 init()

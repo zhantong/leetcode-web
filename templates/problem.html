@@ -1,13 +1,45 @@
 <!doctype html>
 <html>
 <link rel="stylesheet" href="{{ url_for('static',filename='default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='pure-min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='side-menu.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello from Flask</title>
 </head>
 <body>
-{{ description|safe }}
-{% for code in codes %}
-    {{ code|safe }}
-{% endfor %}
+<div id="layout">
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <div id="menu">
+        <div class="pure-menu" id="left">
+            <a class="pure-menu-heading" href="/">Pure</a>
+            <ul class="pure-menu-list">
+                {% for problem in problem_list %}
+                    <li class="pure-menu-item"><a class="pure-menu-link" href="{{ problem.url }}">{{ problem.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div class="header">
+            <h1>{{ title }}</h1>
+        </div>
+        <div class="content">
+            <h2>题目描述</h2>
+            {{ description|safe }}
+            {% for code_type, code in codes %}
+                <h2>题解（{{ code_type }}）</h2>
+                {{ code|safe }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static',filename='ui.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
 </body>
 </html>
