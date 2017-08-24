@@ -33,9 +33,10 @@ def show_problem(slug):
     codes = get_codes(('python', 'java', 'c++'), info)
     title = str(info['id']) + '. ' + info['title']
     if 'X-PJAX' in request.headers:
-        return render_template('problem_description.html', description=description, codes=codes, title=title)
+        return render_template('problem_description.html', description=description, codes=codes, title=title,
+                               id=info['id'])
     return render_template('problem.html', description=description, codes=codes,
-                           problem_list=get_problem_list(slug_dict), title=title)
+                           problem_list=get_problem_list(slug_dict), title=title, id=info['id'])
 
 
 def init():

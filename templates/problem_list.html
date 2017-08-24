@@ -1,9 +1,9 @@
 <div class="pure-menu" id="left">
     <a class="pure-menu-heading" href="/">LeetCode Solutions</a>
-    <ul class="pure-menu-list">
+    <ul class="pure-menu-list" id="problem_list">
         {% for problem in problem_list %}
-            <li class="pure-menu-item"><a data-pjax class="pure-menu-link"
-                                          href="{{ problem.url }}">{{ problem.name }}</a>
+            <li class="pure-menu-item" data-id="{{ problem.id }}"><a data-pjax class="pure-menu-link"
+                                                                     href="{{ problem.url }}">{{ problem.name }}</a>
             </li>
         {% endfor %}
     </ul>
