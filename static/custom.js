@@ -1,5 +1,6 @@
 $(document).ready(
     function () {
+        $('#sidebar').sidebar('attach events', '.launch.item');
         $(document).pjax('a[data-pjax]', '#pjax-container');
         $(document).on('pjax:timeout', function () {
             return false;
@@ -12,7 +13,8 @@ $(document).ready(
     }
 );
 
+
 function highlight_selected_list_item() {
-    $('#problem_list li').removeClass('selected');
-    $('.pure-menu-item[data-id="' + $("#content_title").data("id") + '"]').addClass('selected');
+    $('#sidebar a').removeClass('active');
+    $('.item[data-id="' + $("#content_title").data("id") + '"]').addClass('active');
 }
