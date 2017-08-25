@@ -6,10 +6,11 @@ $(document).ready(
         $(document).on('pjax:timeout', function () {
             return false;
         });
-
+        $(document).on('pjax:start', function () {
+            $('#sidebar').sidebar('hide');
+        });
         $(document).on('pjax:complete', function () {
             highlight_selected_list_item();
-            $('#sidebar').sidebar('hide')
         });
         highlight_selected_list_item();
     }
