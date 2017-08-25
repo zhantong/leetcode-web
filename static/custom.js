@@ -13,6 +13,13 @@ $(document).ready(
             highlight_selected_list_item();
         });
         highlight_selected_list_item();
+
+        $('#prev').click(function () {
+            $('.item[data-id="' + (parseInt($("#content_title").data("id")) - 1).toString() + '"]').click();
+        })
+        $('#next').click(function () {
+            $('.item[data-id="' + (parseInt($("#content_title").data("id")) + 1).toString() + '"]').click();
+        })
     }
 );
 

@@ -17,6 +17,14 @@
     {% include 'problem_list.html' %}
 </div>
 <div class="pusher">
+<button class="ui left floated button" id="prev">
+    <i class="left arrow icon"></i>
+    上一题
+</button>
+<button class="ui right floated button" id="next">
+    <i class="right arrow icon"></i>
+    下一题
+</button>
     {% block main %}{% endblock %}
 </div>
 
