@@ -28,8 +28,12 @@ def show_problem_list():
 def show_problem(slug):
     info = slug_dict[slug]
     description_file_name = str(info['id']).zfill(3) + '. ' + info['title'] + '.html'
-    with open(os.path.join(ROOT, 'descriptions', description_file_name), 'r', encoding='utf-8') as f:
-        description = f.read()
+    file_path = os.path.join(ROOT, 'descriptions', description_file_name)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            description = f.read()
+    else:
+        description = '收费题目'
     codes = get_codes(('python', 'java', 'c++'), info)
     title = str(info['id']) + '. ' + info['title']
     if 'X-PJAX' in request.headers:
