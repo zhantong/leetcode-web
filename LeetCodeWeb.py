@@ -58,8 +58,11 @@ def get_codes(code_types, info):
     codes = []
     for code_type in code_types:
         code_info = code_infos[code_type]
-        with open(os.path.join(ROOT, 'leetcode', str(info['id']).zfill(3) + '. ' + info['title'], code_info[0],
-                               info['title'] + '.' + code_info[1]), 'r', encoding='utf-8') as f:
+        file_path = os.path.join(ROOT, 'leetcode', str(info['id']).zfill(3) + '. ' + info['title'], code_info[0],
+                                 info['title'] + '.' + code_info[1])
+        if not os.path.exists(file_path):
+            continue
+        with open(file_path, 'r', encoding='utf-8') as f:
             code = highlight(f.read(), PythonLexer(), HtmlFormatter())
             codes.append((code_info[0], code))
     return codes

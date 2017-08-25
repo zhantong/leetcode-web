@@ -1,5 +1,9 @@
-.ui.sidebar, .pusher {
+.ui.sidebar {
     top: 40px;
+}
+.pusher{
+    top: 40px;
+    padding-top: 10px;
 }
 
 html, body {
