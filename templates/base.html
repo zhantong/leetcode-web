@@ -7,9 +7,25 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<div class="ui top fixed inverted menu main">
+<div class="ui top fixed inverted menu main borderless">
     <a class="launch icon item">
         <i class="content icon"></i>
+    </a>
+
+    <a class="item" id="prev">
+        <i class="left arrow icon"></i>
+        上一题
+    </a>
+    <div class="right menu compact" style="width: 100%;text-align: center;">
+        <div class="item" style="width: 100%;">
+            <div class="center aligned" style="width: 100%;" id="nav_title">
+                标题
+            </div>
+        </div>
+    </div>
+    <a class="item right" id="next">
+        <i class="right arrow icon"></i>
+        下一题
     </a>
 </div>
 
@@ -17,14 +33,6 @@
     {% include 'problem_list.html' %}
 </div>
 <div class="pusher">
-<button class="ui left floated button" id="prev">
-    <i class="left arrow icon"></i>
-    上一题
-</button>
-<button class="ui right floated button" id="next">
-    <i class="right arrow icon"></i>
-    下一题
-</button>
     {% block main %}{% endblock %}
 </div>
 

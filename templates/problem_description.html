@@ -1,7 +1,5 @@
 <title>{{ title }}</title>
-<h1 class="ui center aligned header" id="content_title" data-id="{{ id }}">{{ title }}</h1>
-
-<article>
+<article data-id="{{ id }}" data-title="{{ title }}" id="article">
     <h2>题目描述</h2>
     {{ description|safe }}
     {% for code_type, code in codes %}

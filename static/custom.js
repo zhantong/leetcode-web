@@ -10,21 +10,26 @@ $(document).ready(
             $('#sidebar').sidebar('hide');
         });
         $(document).on('pjax:complete', function () {
-            highlight_selected_list_item();
+            on_pjax_complete();
         });
-        highlight_selected_list_item();
-
         $('#prev').click(function () {
-            $('.item[data-id="' + (parseInt($("#content_title").data("id")) - 1).toString() + '"]').click();
-        })
+            $('.item[data-id="' + (parseInt($("#article").data("id")) - 1).toString() + '"]').click();
+        });
         $('#next').click(function () {
-            $('.item[data-id="' + (parseInt($("#content_title").data("id")) + 1).toString() + '"]').click();
-        })
+            $('.item[data-id="' + (parseInt($("#article").data("id")) + 1).toString() + '"]').click();
+        });
+
+        on_pjax_complete();
     }
 );
+
+function on_pjax_complete() {
+    highlight_selected_list_item();
+    $('#nav_title').html($('#article').data('title'));
+}
 
 
 function highlight_selected_list_item() {
     $('#sidebar a').removeClass('active');
-    $('.item[data-id="' + $("#content_title").data("id") + '"]').addClass('active');
+    $('.item[data-id="' + $("#article").data("id") + '"]').addClass('active');
 }
