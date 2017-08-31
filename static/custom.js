@@ -18,6 +18,14 @@ $(document).ready(
         $('#next').click(function () {
             $('#sidebar > a.item.active').next().click();
         });
+        $('div.input > i.link').click(function () {
+            $('.item[data-id="' + $("#problem_id").val() + '"]').click();
+        });
+        $("#problem_id").keypress(function (e) {
+            if (e.keyCode == '13') {
+                $('div.input > i.link').click();
+            }
+        });
 
         on_pjax_complete();
     }
@@ -26,6 +34,8 @@ $(document).ready(
 function on_pjax_complete() {
     highlight_selected_list_item();
     $('#nav_title').html($('#article').data('title'));
+
+    $("#problem_id").val('');
 }
 
 
