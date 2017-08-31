@@ -37,6 +37,7 @@ $(document).ready(
                 source: content,
                 searchFields: ['title'],
                 onSelect: function (result, response) {
+                    $("#problem_id").val(result.title);
                     $('div.input > i.link').click();
                 }
             });
