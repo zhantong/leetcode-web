@@ -13,10 +13,10 @@ $(document).ready(
             on_pjax_complete();
         });
         $('#prev').click(function () {
-            $('.item[data-id="' + (parseInt($("#article").data("id")) - 1).toString() + '"]').click();
+            $('#sidebar > a.item.active').prev().click();
         });
         $('#next').click(function () {
-            $('.item[data-id="' + (parseInt($("#article").data("id")) + 1).toString() + '"]').click();
+            $('#sidebar > a.item.active').next().click();
         });
 
         on_pjax_complete();
