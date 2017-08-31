@@ -20,6 +20,7 @@ $(document).ready(
         });
         $('div.input > i.link').click(function () {
             $('.item[data-id="' + $("#problem_id").val() + '"]').click();
+            $("#problem_id").blur();
         });
         $("#problem_id").keypress(function (e) {
             if (e.keyCode == '13') {
