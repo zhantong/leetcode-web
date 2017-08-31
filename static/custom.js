@@ -28,6 +28,19 @@ $(document).ready(
             }
         });
 
+        var content = [];
+        $('#sidebar > a').each(function () {
+            content.push({title: $(this).data('id').toString(), description: $(this).text()})
+        });
+        $('.ui.search')
+            .search({
+                source: content,
+                searchFields: ['title'],
+                onSelect: function (result, response) {
+                    $('div.input > i.link').click();
+                }
+            });
+
         on_pjax_complete();
     }
 );
