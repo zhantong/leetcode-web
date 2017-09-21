@@ -5,7 +5,7 @@ from flask import redirect
 import json
 import os.path
 from pygments import highlight
-from pygments.lexers import PythonLexer
+from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
 app = Flask(__name__)
@@ -67,7 +67,7 @@ def get_codes(code_types, info):
         if not os.path.exists(file_path):
             continue
         with open(file_path, 'r', encoding='utf-8') as f:
-            code = highlight(f.read(), PythonLexer(), HtmlFormatter())
+            code = highlight(f.read(), get_lexer_by_name(code_type), HtmlFormatter())
             codes.append((code_info[0], code))
     return codes
 
